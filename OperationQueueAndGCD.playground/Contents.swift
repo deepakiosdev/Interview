@@ -488,6 +488,7 @@ func testSemaphore() {
  */
 testSemaphore()
 
+//Do not use playground for testing
 func performAsyncTaskIntoConcurrentQueue(with completion: @escaping () -> ()) {
     let concurrentQueue = DispatchQueue(label: "com.queue.Concurrent", attributes: .concurrent)
 
@@ -495,6 +496,8 @@ func performAsyncTaskIntoConcurrentQueue(with completion: @escaping () -> ()) {
         for i in 1...5 {
             group.enter()
             concurrentQueue.async {
+            //concurrentQueue.sync { //Task will complete in same order they started 1, 2, 3, 4, 5
+
                 let imageURL = URL(string: "https://upload.wikimedia.org/wikipedia/commons/0/07/Huge_ball_at_Vilnius_center.jpg")!
                 let _ = try! Data(contentsOf: imageURL)
                 print("###### Image \(i) Downloaded ######")

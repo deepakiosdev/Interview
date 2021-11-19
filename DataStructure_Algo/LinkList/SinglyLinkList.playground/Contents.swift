@@ -383,7 +383,7 @@ class LinkList<T> {
     func nodeAtIndex(_ index: Int) -> Node<T>? {
         
         guard index > -1 && index < self.count else {
-            print("Invalid index node could not fount at:\(index)")
+            print("Invalid index node could not found at:\(index)")
             return nil
         }
         

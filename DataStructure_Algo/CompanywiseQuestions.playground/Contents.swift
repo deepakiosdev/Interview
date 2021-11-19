@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Darwin
 
 /*
  ///////Walmart///////////
@@ -142,7 +143,7 @@ missingNumber(numbers: [1, 2, 4, 6, 3, 7, 8]) //5
  
  https://www.techiedelight.com/find-missing-number-array/
  We know XOR of two equal numbers cancels each other. Take advantage of this fact to find missing number in limited range array.
-The idea is compute XOR of all the elements in given array and compute XOR of all the elemens from 1 to n + 1. where n is size of array. Now missing number is XOR of theese two
+The idea is compute XOR of all the elements in given array and compute XOR of all the elemens from 1 to n + 1. where n is size of array. Now missing number is XOR of these two
  
 */
 
@@ -2392,25 +2393,59 @@ minByKey("b", records: dictArr)
 ////////OYO/////////////
 //Second Round by Shalvi Sexsena 21 Oct
 /*
- 
  Question 1-
- 
- /*[
+[
  [1, 0, 0, 1]
  [0, 1, 0, 1]
  [1, 1, 0, 0]
  ]
-  
-  //first loop - [0][0],[0, 1]
-  // inner loop if [0][1] == 0 {
-  
-  }
-  o(n * m)
+
  o/p -> [true, false, false, true]
+
  */
 
- Question 2-
- Move last element to front of a given Linked List https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
+ func getGravity(_ mattrix: [[Int]])-> [Bool] {
+
+     guard mattrix.count > 1 else {
+         return []
+     }
+
+     var result = Array.init(repeating: false, count: mattrix.first!.count)
+    
+     let columnCount = mattrix.first!.count
+     let rowCount = mattrix.count
+
+     for column in 0..<columnCount {
+
+         let topEle = mattrix[0][column]
+
+         if topEle == 0 {
+             print("Do not traverse: \(column)")
+             continue
+         }
+
+         for row in 1..<rowCount {
+
+             print("\(row)\(column)")
+
+             if mattrix[row][column] == 0 {
+                 print("Find gravity: \(row)\(column)")
+                 result[column] = true
+                 break
+             }
+         }
+     }
+     print(result)
+     return result
+
+ }
+
+ getGravity([[1, 0, 0, 1], [0, 1, 0, 1],[1, 1, 0, 0]])
+
+ /*Question 2-
+ Move last K element to front of a given Linked List
+  https://www.youtube.com/watch?v=v6g1g4lNowM
+  https://www.geeksforgeeks.org/move-last-element-to-front-of-a-given-linked-list/
  Input: 1 -> 2 -> 3 -> 4 -> 5 -> 6, k = 3
  Output : 4 -> 5 -> 6 -> 1 -> 2 -> 3
 
@@ -2423,9 +2458,15 @@ minByKey("b", records: dictArr)
 
 func outPutOfStride() {
     for number in stride(from: 1, to: 17, by: 4) {
-        print("number:\(number)") //1, 5, 9, 17
+        print("To number:\(number)") //1, 5, 9, 13
     }
+    
+    for number in stride(from: 1, through: 17, by: 4) {
+        print("Through number:\(number)") //1, 5, 9, 13, 17
+    }
+
 }
+
 outPutOfStride()
 
 func switchTest(_ num: Int) {
@@ -2445,3 +2486,196 @@ func switchTest(_ num: Int) {
     }
 }
 switchTest(15)
+
+///////////////Anar Second round with Himansu Jain 29 Oct////////////
+
+/*Given any unsorted integer array nums, reorder it such that nums[0] < nums[1] > nums[2] < nums[3]....
+You may assume the input array always has a valid answer. Eg: For an input: 1,2,4,3,5, output: 1,5,2,4,3 & 1,4,2,5,3 are both acceptable answers*/
+
+func reArrangeElements(_ arr:[Int])->[Int] {
+    
+    if arr.count < 2 {
+        return arr
+    }
+    
+    let numbers = arr.sorted()
+    var results = [Int]()
+    var l = 0
+    var r = numbers.count - 1
+    
+    while l <= r {
+        results.append(numbers[l])
+        if l != r {
+            results.append(numbers[r])
+        }
+        r -= 1
+        l += 1
+    }
+    
+    return results
+}
+
+print(reArrangeElements([1,2,4,3,5]))
+
+//Feed
+//Front end archi
+//app release fast - 1st priorty
+//dev fast
+// Stabiltity - 2nd priorty
+//
+
+//Stage 2
+//// Stabiltity - 1st priorty
+
+/*
+ 1. Web services
+ 4. Cache -
+ 5. Database - To offline support
+ 6. User
+ 2. Creator - Upload content(Image, Video, Text)
+ 3. Consumer - See the feeds/Download contents
+ 
+ */
+
+
+/* Provide time estimation for github issue list and isuue detail page.
+ Issue List
+ Issue Detail -
+ Search and Filter -
+ Web service integaration
+ 
+ 
+ Time break up -
+ 
+ UI
+    Issue List - 8 Hrs
+    Issue Detail - 5 Hrs
+ 
+ Functionality-
+ Issue List, web service integration and pagination -  8 Hrs
+ Issue Detail web service integration and dynmic height UI - 4 Hrs
+ 
+ Search and Filter - 8 Hrs
+ 
+ Comment, Like, React - 8 Hrs
+ 
+ Testing QA - 8 Hr
+ 
+ Bug - 6 Hrs
+ Project setup and release - 5Hr
+  //////
+
+ There are 9 coins of same size and shape. Out of them 1 is heavy coin. Using a balance scale twice, find out which coin is heavy coin.
+ 
+ //////////
+ An ant is at the middle of a cubical room of side a. What will be shortest distance for ant to reach the farthest corner of the cube?
+
+ */
+
+////////MXPlayer Bhargav Gurlanka/////////////
+/*Q1)
+let foo = [1,2,3,4,5].partition({ $0 % 2 == 0})
+print(foo)
+
+// Output:
+// [2,4,1,3,5]
+ 
+ Implement partition function to achive the result.
+ */
+
+extension Array {
+
+    func partition(_ transform: (Element)-> Bool)-> [Element] {
+        var evenNumberIndex = 0
+        var result = self
+
+        for (index, num) in enumerated() {
+            
+            if transform(num) {
+                (result[evenNumberIndex], result[index]) = (result[index], result[evenNumberIndex])
+                evenNumberIndex += 1
+            }
+        }
+        
+        return result
+    }
+    
+    
+    func moveEvenOnStart(_ transform: (Element)-> Bool)-> [Element] {
+        var l = 0
+        var r = count - 1
+        var result = self
+
+        while l < r {
+            
+            while transform(result[l]) && l < r {
+                l += 1
+            }
+
+            while !transform(result[r]) && l < r {
+                r -= 1
+            }
+            
+            if l < r {
+                (result[l], result[r]) = (result[r], result[l])
+                l += 1
+                r -= 1
+            }
+        }
+        
+        return result
+    }
+    
+}
+
+
+////////MoEngage Chenaappa/////////////
+
+/*Q1) How to perform array of request in serially
+ 
+ */
+
+struct OtherObject {
+    
+}
+
+class WebService {
+    
+    func fetch(_ request: URLRequest, result:(OtherObject, _ isSuccess: Bool)-> Void) {
+        sleep(2)
+        result(OtherObject(), true)
+    }
+}
+
+
+func fetchResults(for array: [URLRequest], completion: (Bool) -> Void) {
+    let queue = DispatchQueue(label: "Serial queue")
+    let group = DispatchGroup()
+
+    var results: [OtherObject] = []
+    
+    for object in array {
+        group.enter()
+        
+        WebService().fetch(object) { (result, isSuccess) in
+
+            if isSuccess {
+                results.append(result)
+            } else {
+                completion(false)
+                return
+            }
+            group.leave()
+
+        }
+    }
+
+    group.notify(queue: queue) {
+        print(results)
+        completion(true)
+    }
+}
+
+
+
+

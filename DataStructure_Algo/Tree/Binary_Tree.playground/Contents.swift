@@ -387,7 +387,7 @@ Top view of the above binary tree is
                     queue.append(left)
                 }
                 
-                if let right =  node.right {
+                if let right = node.right {
                     queue.append(right)
                 }
                 
