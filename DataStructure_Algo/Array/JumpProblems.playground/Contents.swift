@@ -37,10 +37,8 @@ func jump(_ nums: [Int]) -> Int {
     //nums.count - 1 (Because we do need to find jumbs before the last elements to reach last index )
     for index in 0..<nums.count - 1 {
         
-        if (index + nums[index]) > maxReach {
-            maxReach = index + nums[index]
-        }
-        
+        maxReach = max(maxReach, index + nums[index])
+
         //This step is optional its increase memory usase
         if maxReach >= nums.count - 1 {
             jumps += 1
@@ -162,8 +160,6 @@ func minCostClimbingStairs(_ cost: [Int]) -> Int {
  You are climbing a staircase. It takes n steps to reach the top.
 
  Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
-
-  
 
  Example 1:
 

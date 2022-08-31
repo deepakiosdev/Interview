@@ -35,6 +35,7 @@
  1 <= k <= 109
  */
 
+//If no duplicate
 func maxOperations1(_ nums: [Int], _ k: Int) -> Int {
    
     guard nums.count > 1 else {

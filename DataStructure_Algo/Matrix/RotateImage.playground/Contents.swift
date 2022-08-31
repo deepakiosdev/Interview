@@ -14,7 +14,9 @@ func rotate(_ matrix: inout [[Int]]) {
             (matrix[rowIndex][columnIdex], matrix[columnIdex][rowIndex]) = ( matrix[columnIdex][rowIndex], matrix[rowIndex][columnIdex])
         }
     }
-    //Step 2- Flip horizontally (Swap colums)
+    
+    print(matrix)
+    //Step 2- Flip horizontally (Swap columns)
     //swap(array[i][j],array[i][N-1-j])
     for rowIndex in 0..<rowCount {
         

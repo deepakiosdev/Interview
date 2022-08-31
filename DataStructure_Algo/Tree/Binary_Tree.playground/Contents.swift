@@ -100,10 +100,13 @@ extension BinaryTree {
     
     //DFS -> inorderTraversal, preorderTraversal, posrtorderTraversal these are types of DFS.
     /*
-     (a) Inorder (Left, Root, Right) : 4 2 5 1 3
-     (b) Preorder (Root, Left, Right) : 1 2 4 5 3
+     https://www.youtube.com/watch?v=XRcC7bAtL3c - Visualization
+     (a) Preorder (Root, Left, Right) : 1 2 4 5 3
+     (b) Inorder (Left, Root, Right) : 4 2 5 1 3
      (c) Postorder (Left, Right, Root) : 4 5 2 3 1
      */
+    //Time Complexity: O(n) where n is the number of nodes in the binary tree
+    //Space Complexity: O(1)
         func inorderTraversal(process:(T)->Void) {
             left?.inorderTraversal(process: process)
             process(value)
@@ -125,6 +128,8 @@ extension BinaryTree {
     //Level Order Traversal also called BFS
     //Breadth First or Level Order Traversal : 1 2 3 4 5
 
+    //Time Complexity: O(n) where n is the number of nodes in the binary tree
+    //Space Complexity: O(n) where n is the number of nodes in the binary tree
     func levelOrderTraversal(_ root: BinaryTree?) -> [T] {
         
         guard let root = root else {

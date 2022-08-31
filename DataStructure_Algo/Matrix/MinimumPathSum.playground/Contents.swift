@@ -55,11 +55,15 @@ func minPathSum(_ grid: [[Int]]) -> Int {
 
         }
     }
+    print(pathSum)
     return pathSum[pathSum.count - 1][pathSum.first!.count - 1]
 }
-//[[1, 4, 4],
-//[2, 6, 2],
-//[5, 6, 2]]
+
+/*[
+ [1, 4, 5],
+ [2, 7, 6],
+ [6, 8, 7]]
+ */
 
 var grid = [[1,3,1],
             [1,5,1],

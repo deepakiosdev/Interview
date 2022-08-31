@@ -155,7 +155,6 @@ print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 
  An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
 
-  
 
  Example 1:
 

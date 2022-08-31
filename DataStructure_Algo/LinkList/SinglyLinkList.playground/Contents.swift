@@ -449,17 +449,17 @@ extension LinkList {
         var even: Node<T>?
 
         while odd?.next != nil {
-            let oddNext = odd?.next
-            odd?.next = oddNext?.next
+            let nextNode = odd?.next
+            odd?.next = nextNode?.next
             
-            oddNext?.next = even
-            even = oddNext
+            nextNode?.next = even
+            even = nextNode
             
             odd = odd?.next
         }
 
-        print("even:\(description(even))")
-        print("head:\(description(head))")
+        //print("even:\(description(even))")
+        //print("head:\(description(head))")
 
        odd = head
         while even != nil {
@@ -472,11 +472,10 @@ extension LinkList {
             
             //Move the head to the next odd node
             odd = odd?.next?.next
-            
             even = temp
 
         }
-        //print(head?.description)
+        print("reverseEvenIndexElement----:\(description(head))")
     }
     
     func reverseFirstKElement(_ k: Int) {
@@ -775,7 +774,7 @@ ll.append(70)
 //ll.description
 //ll.delete(at: 8)
 //ll.description()
-//ll.reverseEvenIndexElement()
+ll.reverseEvenIndexElement()
 //ll.reverseLinklist()
 //ll.reverseFirstKElement(3)
 //ll.oddEvenList()

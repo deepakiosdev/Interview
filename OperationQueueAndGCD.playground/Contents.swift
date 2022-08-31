@@ -266,7 +266,6 @@ class AsyncOperation: Operation {
         } else {
             state = .Executing
         }
-        
         // fatalError("Subclasses must override main without calling super.")
     }
 }
@@ -308,6 +307,7 @@ class MyOperationQueueTest {
             print("Operation completed, cancelled:\(asyncOperation.isCancelled)")
         }
     }
+    
     func testOperationQueue() {
         for _ in 1...totalOperation {
             addOperations()

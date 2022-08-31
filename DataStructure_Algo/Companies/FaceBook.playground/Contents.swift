@@ -33,13 +33,13 @@ I think that we can use UIView's method isDescendant(of:) https://developer.appl
  */
 
 func findParent1(a: UIView, b: UIView) -> UIView? {
-    var currentView = a
+    var currentView: UIView? = a
     
     while currentView != nil {
-        if b.isDescendant(of: currentView) {
+        if b.isDescendant(of: currentView!) { //isDescendant(of:) == isSubview(of:)
             return currentView
         } else {
-            currentView = currentView.superview!
+            currentView = currentView?.superview
         }
     }
     return nil
@@ -52,13 +52,13 @@ func findParent1(a: UIView, b: UIView) -> UIView? {
 }*/
 
 //OR https://gist.github.com/AdrianFerreyra/3a0f4ec2cdd6129934e60dec070c9abb
-
+//This one if fine as per my understanding as compare to other solution.
 extension UIView {
     func commonSuperView(otherView: UIView) -> UIView? {
-        var pathToRoot = [UIView]()
+        var pathToRoot = Set<UIView>()
         var current: UIView? = self
         while current != nil {
-            pathToRoot.append(current!)
+            pathToRoot.insert(current!)
             current = current?.superview
         }
 

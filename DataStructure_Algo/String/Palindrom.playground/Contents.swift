@@ -111,10 +111,11 @@ private func searchPalindrome(_ chars: [Character], _ l: Int, _ r: Int, _ start:
 
 //let str = "geek"
 //let str = "aba"
-let str = "abaaa"
+//let str = "abaaa"
 
+let str = "agbcba"
 
-print(longestPalindrome(str))
+print("longestPalindrome:\(longestPalindrome(str))")
 
 /////////////
 //https://www.geeksforgeeks.org/find-number-distinct-palindromic-sub-strings-given-string/
